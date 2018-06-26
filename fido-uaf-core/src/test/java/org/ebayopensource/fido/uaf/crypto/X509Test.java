@@ -61,7 +61,6 @@ public class X509Test {
 		X509Certificate x509Certificate = X509.parseDer(tags.getTags().get(TagsEnum.TAG_ATTESTATION_CERT.id).value);
 		assertNotNull(x509Certificate);
 		logger.info("Base64 of DER encoding : "+ Base64.encodeBase64URLSafeString(x509Certificate.getEncoded()));
-		logger.info("From spec example: "+x509Certificate.toString());
 	}
 	
 	private String getCertFromTestMetadata() {

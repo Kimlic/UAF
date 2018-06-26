@@ -27,6 +27,16 @@
 			<artifactId>bcprov-jdk15on</artifactId>
 			<version>1.51</version>
 		</dependency>
+		<dependency>
+			<groupId>org.javalite</groupId>
+			<artifactId>activejdbc</artifactId>
+			<version>1.4.13</version>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -80,6 +90,19 @@
 						is passed as VM argument when Maven the Surefire plugin is executed. -->
 					<propertyName>surefireargs</propertyName>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.javalite</groupId>
+				<artifactId>activejdbc-instrumentation</artifactId>
+				<version>1.4.13</version>
+				<executions>
+					<execution>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>instrument</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

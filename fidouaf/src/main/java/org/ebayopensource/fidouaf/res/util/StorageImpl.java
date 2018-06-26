@@ -22,6 +22,7 @@ import org.ebayopensource.fido.uaf.storage.DuplicateKeyException;
 import org.ebayopensource.fido.uaf.storage.RegistrationRecord;
 import org.ebayopensource.fido.uaf.storage.StorageInterface;
 import org.ebayopensource.fido.uaf.storage.SystemErrorException;
+import org.javalite.activejdbc.Base;
 
 public class StorageImpl implements StorageInterface {
 
@@ -52,6 +53,10 @@ public class StorageImpl implements StorageInterface {
 
 	public void store(RegistrationRecord[] records)
 			throws DuplicateKeyException, SystemErrorException {
+//		for (RegistrationRecord record: records) {
+//			record.save();
+//		}
+
 		if (records != null && records.length > 0) {
 			for (int i = 0; i < records.length; i++) {
 				if (db.containsKey(records[i].authenticator.toString())) {

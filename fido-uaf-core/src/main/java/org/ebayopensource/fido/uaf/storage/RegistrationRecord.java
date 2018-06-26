@@ -15,6 +15,7 @@
  */
 
 package org.ebayopensource.fido.uaf.storage;
+import org.javalite.activejdbc.Model;
 
 public class RegistrationRecord {
 	public AuthenticatorRecord authenticator;

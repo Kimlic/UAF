@@ -12,6 +12,19 @@ dependencies {
 	compile 'com.google.code.gson:gson:2.3.1'
 	compile 'commons-codec:commons-codec:1.9'
 	compile 'org.bouncycastle:bcprov-jdk15on:1.51'
-
+	compile 'org.javalite:activejdbc:1.4.13'
+	compile 'org.postgresql:postgresql:42.2.2'
 	testCompile 'junit:junit:4.12'
 }
+buildscript {
+	repositories {
+		mavenCentral()
+		maven { url 'http://repo.javalite.io' }
+	}
+	dependencies {
+		classpath group: 'org.javalite', name: 'activejdbc-gradle-plugin', version: '1.4.13-SNAPSHOT'
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'org.javalite.activejdbc'

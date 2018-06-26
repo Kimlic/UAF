@@ -16,6 +16,8 @@
 
 package org.ebayopensource.fido.uaf.storage;
 
+import org.javalite.activejdbc.Model;
+
 public class AuthenticatorRecord {
 
 	private static final String DLM = "#";

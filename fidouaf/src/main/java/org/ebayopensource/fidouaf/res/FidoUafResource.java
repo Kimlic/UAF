@@ -44,10 +44,7 @@ import org.ebayopensource.fido.uaf.msg.RegistrationRequest;
 import org.ebayopensource.fido.uaf.msg.RegistrationResponse;
 import org.ebayopensource.fido.uaf.msg.Transaction;
 import org.ebayopensource.fido.uaf.msg.Version;
-import org.ebayopensource.fido.uaf.storage.AuthenticatorRecord;
-import org.ebayopensource.fido.uaf.storage.DuplicateKeyException;
-import org.ebayopensource.fido.uaf.storage.RegistrationRecord;
-import org.ebayopensource.fido.uaf.storage.SystemErrorException;
+import org.ebayopensource.fido.uaf.storage.*;
 import org.ebayopensource.fidouaf.RPserver.msg.ReturnUAFAuthenticationRequest;
 import org.ebayopensource.fidouaf.RPserver.msg.ReturnUAFDeregistrationRequest;
 import org.ebayopensource.fidouaf.RPserver.msg.ReturnUAFRegistrationRequest;
@@ -69,6 +66,7 @@ import com.google.gson.GsonBuilder;
 public class FidoUafResource {
 
 	protected Gson gson = new GsonBuilder().disableHtmlEscaping().create();
+//	protected DBConnection db = DBConnection.getInstance();
 
 	@GET
 	@Path("/info")

@@ -27,5 +27,16 @@
 			<artifactId>gson</artifactId>
 			<version>2.3.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.javalite</groupId>
+			<artifactId>activejdbc</artifactId>
+			<version>1.4.13</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.gretty/gretty-runner-jetty9 -->
+		<dependency>
+			<groupId>org.gretty</groupId>
+			<artifactId>gretty-runner-jetty9</artifactId>
+			<version>2.1.0</version>
+		</dependency>
 	</dependencies>
 </project>
