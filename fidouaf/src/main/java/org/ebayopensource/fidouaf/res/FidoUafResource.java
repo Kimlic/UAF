@@ -55,10 +55,7 @@ import org.ebayopensource.fidouaf.RPserver.msg.ServerResponse;
 import org.ebayopensource.fidouaf.RPserver.msg.GetUAFRequest;
 import org.ebayopensource.fidouaf.facets.Facets;
 import org.ebayopensource.fidouaf.facets.TrustedFacets;
-import org.ebayopensource.fidouaf.res.util.DeregRequestProcessor;
-import org.ebayopensource.fidouaf.res.util.FetchRequest;
-import org.ebayopensource.fidouaf.res.util.ProcessResponse;
-import org.ebayopensource.fidouaf.res.util.StorageImpl;
+import org.ebayopensource.fidouaf.res.util.*;
 import org.ebayopensource.fidouaf.stats.Dash;
 import org.ebayopensource.fidouaf.stats.Info;
 
@@ -76,7 +73,14 @@ public class FidoUafResource {
 	public String info() {
 		return gson.toJson(new Info());
 	}
-	
+
+	@GET
+	@Path("/version")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String postgresVersion() {
+		return gson.toJson(DBConnection.getInstance().version());
+	}
+
 	@GET
 	@Path("/whitelistuuid/{uuid}")
 	@Produces(MediaType.APPLICATION_JSON)

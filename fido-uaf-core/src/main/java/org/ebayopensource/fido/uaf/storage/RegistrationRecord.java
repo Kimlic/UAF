@@ -18,6 +18,7 @@ package org.ebayopensource.fido.uaf.storage;
 
 public class RegistrationRecord {
 	public AuthenticatorRecord authenticator;
+	public String authenticator_id;
 	public String PublicKey;
 	public String SignCounter;
 	public String AuthenticatorVersion;

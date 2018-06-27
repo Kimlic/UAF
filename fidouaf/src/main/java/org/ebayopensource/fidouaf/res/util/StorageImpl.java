@@ -27,6 +27,7 @@ public class StorageImpl implements StorageInterface {
 
 	private static StorageImpl instance = new StorageImpl();
 	private Map<String, RegistrationRecord> db = new HashMap<String, RegistrationRecord>();
+	private DBConnection pdb = DBConnection.getInstance();
 
 	private StorageImpl() {
 		// Init
@@ -53,13 +54,13 @@ public class StorageImpl implements StorageInterface {
 	public void store(RegistrationRecord[] records)
 			throws DuplicateKeyException, SystemErrorException {
 		if (records != null && records.length > 0) {
-			for (int i = 0; i < records.length; i++) {
-				if (db.containsKey(records[i].authenticator.toString())) {
+			for (RegistrationRecord rr: records
+				 ) {
+				if (pdb.authenticationRecordCount(rr.authenticator) > 0) {
 					throw new DuplicateKeyException();
 				}
-				db.put(records[i].authenticator.toString(), records[i]);
+				pdb.saveRegistrationRecord(rr);
 			}
-
 		}
 	}
 

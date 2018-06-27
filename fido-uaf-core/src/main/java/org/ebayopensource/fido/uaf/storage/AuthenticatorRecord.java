@@ -28,5 +28,5 @@ public class AuthenticatorRecord {
 
 	public String toString() {
 		return AAID + DLM + KeyID;
-	}
+	};
 }

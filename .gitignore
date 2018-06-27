@@ -7,3 +7,5 @@ build
 .idea/*
 *.iml
 local.properties
+fidouaf/out/
+fido-uaf-core/out/
