@@ -22,13 +22,14 @@ public class DBConnection {
         user = "postgres";
         password = "";
         try {
+            DriverManager.registerDriver(new org.postgresql.Driver());
             con = DriverManager.getConnection(url, user, password);
         } catch (SQLException ex) {
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
         }
     }
 
-    public static DBConnection getInstance(){
+    public static DBConnection getInstance() {
         return instance;
     }
 

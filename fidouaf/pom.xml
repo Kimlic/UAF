@@ -27,5 +27,20 @@
 			<artifactId>gson</artifactId>
 			<version>2.3.1</version>
 		</dependency>
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.4-1206-jdbc42</version>
+		</dependency>
 	</dependencies>
+
+	<properties>
+    	<maven.compiler.source>1.8</maven.compiler.source>
+    	<maven.compiler.target>1.8</maven.compiler.target>
+  	</properties>
 </project>
