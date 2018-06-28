@@ -99,13 +99,12 @@ public class RegistrationResponseProcessing {
 			}
 
 			AuthenticatorRecord authRecord = new AuthenticatorRecord();
-			authRecord.AAID = new String(tags.getTags().get(
-					TagsEnum.TAG_AAID.id).value);
+			authRecord.username = record.username;
+			authRecord.AAID = new String(tags.getTags().get(TagsEnum.TAG_AAID.id).value);
 			authRecord.KeyID =
 			// new String(tags.getTags().get(
 			// TagsEnum.TAG_KEYID.id).value);
-			Base64.encodeBase64URLSafeString(tags.getTags().get(
-					TagsEnum.TAG_KEYID.id).value);
+				Base64.encodeBase64URLSafeString(tags.getTags().get(TagsEnum.TAG_KEYID.id).value);
 			record.authenticator = authRecord;
 			record.PublicKey = Base64.encodeBase64URLSafeString(tags.getTags()
 					.get(TagsEnum.TAG_PUB_KEY.id).value);
