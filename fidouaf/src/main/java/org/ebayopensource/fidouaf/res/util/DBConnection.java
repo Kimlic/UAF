@@ -110,7 +110,7 @@ public class DBConnection {
     private String prepareAuthenticatorRecord(AuthenticatorRecord ar) {
         return String.format(
                     "INSERT INTO public.authenticator_records(aaid, key_id, device_id, username, status) " +
-                    "VALUES (%s, %s, %s, %s, %s) " +
+                    "VALUES ('%s', '%s', '%s', '%s', '%s') " +
                     "RETURNING ID;",
                 ar.AAID, ar.KeyID, ar.deviceId, ar.username, ar.status);
     }
@@ -122,12 +122,12 @@ public class DBConnection {
                         "            tc_display_png_characteristics, username, user_id, device_id, \n" +
                         "            time_stamp, status, attest_cert, attest_data_to_sign, attest_signature, \n" +
                         "            attest_verified_status)\n" +
-                        "    VALUES (%s, %s, %s, %s, %s, \n" +
-                        "            %s, %s, %s, %s, %s, \n" +
-                        "            %s, %s, %s, %s)\n" +
+                        "    VALUES ('%s', '%s', '%s', '%s', '%s', \n" +
+                        "            '%s', '%s', '%s', '%s', '%s', \n" +
+                        "            '%s', '%s', '%s', '%s')\n" +
                         "    RETURNING ID;",
-                rr.authenticator_id, rr.PublicKey, rr.SignCounter, rr.AuthenticatorVersion,
-                rr.tcDisplayPNGCharacteristics, rr.username, rr.userId, rr.deviceId, rr.timeStamp,
+                rr.authenticator_id, rr.PublicKey, rr.SignCounter, rr.AuthenticatorVersion, 
+                rr.tcDisplayPNGCharacteristics, rr.username, rr.userId, rr.deviceId, rr.timeStamp, 
                 rr.status, rr.attestCert, rr.attestDataToSign, rr.attestSignature, rr.attestVerifiedStatus);
     }
 }
