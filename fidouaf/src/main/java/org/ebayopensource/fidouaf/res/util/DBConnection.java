@@ -67,6 +67,38 @@ public class DBConnection {
         return null;
     }
 
+    public RegistrationRecord getRecordByKeyAndAAID(String key_id, String aaid) {
+        try (
+                Statement st = this.con.createStatement())
+        {
+            ResultSet rs = st.executeQuery(this.prepareGetRecordByKeyAndAAID(key_id, aaid));
+            while (rs.next()) {
+                RegistrationRecord regRecord = new RegistrationRecord();
+                regRecord.authenticator_id = rs.getString("authenticator_id");
+                regRecord.PublicKey = rs.getString("public_key");
+                regRecord.SignCounter = rs.getString("sign_counter");
+                regRecord.AuthenticatorVersion = rs.getString("authenticator_version");
+                regRecord.tcDisplayPNGCharacteristics = rs.getString("tc_display_png_characteristics");
+                regRecord.username = rs.getString("username");
+                regRecord.userId = rs.getString("user_id");
+                regRecord.deviceId = rs.getString("device_id");
+                regRecord.timeStamp = rs.getString("time_stamp");
+                regRecord.status = rs.getString("status");
+                regRecord.attestCert = rs.getString("attest_cert");
+                regRecord.attestDataToSign = rs.getString("attest_data_to_sign");
+                regRecord.attestSignature = rs.getString("attest_signature");
+                regRecord.attestVerifiedStatus = rs.getString("attest_verified_status");
+
+                return regRecord;
+            }
+
+        }catch (SQLException ex) {
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+            return null;
+        }
+        return null;
+    }
+
     public String saveAuthenticatorRecord(AuthenticatorRecord ar) {
         try (
                 Statement st = this.con.createStatement())
@@ -118,7 +150,7 @@ public class DBConnection {
     private String prepareInsertRegistrationRecord(RegistrationRecord rr) {
         return String.format(
                 "INSERT INTO public.registration_records(\n" +
-                        "            authenticator, public_key, sign_counter, authenticator_version, \n" +
+                        "            authenticator_id, public_key, sign_counter, authenticator_version, \n" +
                         "            tc_display_png_characteristics, username, user_id, device_id, \n" +
                         "            time_stamp, status, attest_cert, attest_data_to_sign, attest_signature, \n" +
                         "            attest_verified_status)\n" +
@@ -130,4 +162,16 @@ public class DBConnection {
                 rr.tcDisplayPNGCharacteristics, rr.username, rr.userId, rr.deviceId, rr.timeStamp, 
                 rr.status, rr.attestCert, rr.attestDataToSign, rr.attestSignature, rr.attestVerifiedStatus);
     }
+
+    private String prepareGetRecordByKeyAndAAID(String key, String aaid) {
+        return String.format(
+                "SELECT r.* " +
+                "FROM registration_records AS r " +
+                "JOIN authenticator_records AS a ON (r.authenticator_id = a.id) " +
+                "WHERE a.key_id = '%s' and a.aaid = '%s'" +
+                "LIMIT 1;",
+                key, aaid
+        );
+    }
+
 }

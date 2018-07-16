@@ -18,7 +18,7 @@ package org.ebayopensource.fido.uaf.storage;
 
 public class AuthenticatorRecord {
 
-	private static final String DLM = "#";
+	private static final String DLM = "%%";
 
 	public String AAID;
 	public String KeyID;

@@ -212,16 +212,17 @@ public class FidoUafResource {
 	}
 	
 	private String readFacet() {
-		InputStream in = getClass().getResourceAsStream("config.properties");
-		String facetVal = "";
-		try {
-			Properties props = new Properties();
-			props.load(in);
-			facetVal = props.getProperty("facetId");
-		} catch (IOException e) {
-			e.printStackTrace();
-		} 
-		return facetVal.toString();
+//		InputStream in = getClass().getResourceAsStream("config.properties");
+//		String facetVal = "";
+//		try {
+//			Properties props = new Properties();
+//			props.load(in);
+//			facetVal = "android:apk-key-hash:n2ljoc0IF9QE2PQk9xDEcxlF0iU";
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		return facetVal.toString();
+		return "android:apk-key-hash:n2ljoc0IF9QE2PQk9xDEcxlF0iU";
 	}
 
 	/**

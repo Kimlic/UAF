@@ -65,7 +65,9 @@ public class StorageImpl implements StorageInterface {
 	}
 
 	public RegistrationRecord readRegistrationRecord(String key) {
-		return db.get(key);
+		String[] keys = key.split("%%");
+
+		return pdb.getRecordByKeyAndAAID(keys[1], keys[0]);
 	}
 
 	public void update(RegistrationRecord[] records) {
