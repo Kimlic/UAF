@@ -12,21 +12,34 @@ public class DBConnection {
     private static final DBConnection instance = new DBConnection();
     String url;
     String user;
+    String host;
+    String port;
+    String db_name;
     String password;
     Logger lgr = Logger.getLogger(DBConnection.class.getName());
     Connection con;
 
     //private constructor to avoid client applications to use constructor
     private DBConnection(){
-        url = "jdbc:postgresql://localhost:5432/fido";
-        user = "postgres";
-        password = "";
+        host = getSysEnv("DB_HOST", "localhost");
+        port = getSysEnv("DB_PORT", "5432");
+        user = getSysEnv("DB_USER", "postgres");
+        db_name = getSysEnv("DB_NAME", "fido");
+        password = getSysEnv("DB_PASSWORD", "");
+        url = String.format("jdbc:postgresql://%s:%s/%s", host, port, db_name);
+
         try {
             DriverManager.registerDriver(new org.postgresql.Driver());
             con = DriverManager.getConnection(url, user, password);
         } catch (SQLException ex) {
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
         }
+    }
+
+    private String getSysEnv(String key, String default_value){
+        String val = System.getenv(key);
+
+        return (val != null && !val.isEmpty()) ? val : default_value;
     }
 
     public static DBConnection getInstance() {
