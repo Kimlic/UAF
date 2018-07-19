@@ -56,7 +56,10 @@ DB_PASSWORD=p@s$w0rd
 
 Run Docker container
 ```
-docker run -p 8080:8080 --name fidouaf --env-file .env  edenlabllc/fidouaf:latest
+docker run -p 8080:8080 
+           --name fidouaf 
+           --env-file .env
+           edenlabllc/fidouaf:latest
 ```
 
 [Docker hub](https://hub.docker.com/r/edenlabllc/fidouaf/tags/)
