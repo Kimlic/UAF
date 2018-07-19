@@ -59,7 +59,7 @@ Run Docker container
 docker run -p 8080:8080 --name fidouaf --env-file .env  edenlabllc/fidouaf:latest
 ```
 
-(Docker hub)[https://hub.docker.com/r/edenlabllc/fidouaf/tags/]
+[Docker hub](https://hub.docker.com/r/edenlabllc/fidouaf/tags/)
 
 # Building Docker container
 
