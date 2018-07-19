@@ -42,6 +42,46 @@ The code presented here is divided into three groups:
 2. [fidouaf](fidouaf/README.md) - UAF server, a Jersey service application for demoing UAF protocol implementation use
 3. [RP Client App](fidouafclient) - Android relying party client app for demoing UAF server
 
+
+# Running Docker container
+
+Create `.env` file with next variables
+```
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=fido
+DB_USER=fido-user
+DB_PASSWORD=p@s$w0rd
+```
+
+Run Docker container
+```
+docker run -p 8080:8080 --name fidouaf --env-file .env  edenlabllc/fidouaf:latest
+```
+
+(Docker hub)[https://hub.docker.com/r/edenlabllc/fidouaf/tags/]
+
+# Building Docker container
+
+Build container from root directory with specified version:
+
+```
+docker build --tag fidouaf:{VERSION} \
+             --file Dockerfile \
+             .
+```
+
+Create tag
+```
+docker tag fidouaf:${VERSION} edenlabllc/fidouaf:${VERSION}
+docker tag fidouaf:${VERSION} edenlabllc/fidouaf:latest
+```
+
+Push to Docker hub
+```
+docker push edenlabllc/fidouaf
+```
+
 # Steps for running the demo
 
 1. Build and run the UAF server as described in the Wiki page of the project (https://github.com/eBay/UAF/wiki/BuildingAndRunningUAFServer).
