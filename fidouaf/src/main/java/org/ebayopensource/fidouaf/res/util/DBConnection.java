@@ -147,14 +147,14 @@ public class DBConnection {
 
     private String prepareAuthenticatorRecordCount(AuthenticatorRecord ar) {
         return String.format(
-                        "select count(1) from authenticator_records \n" +
-                        " where aaid=%s and key_id=%s and device_id=%s and username=%s and status=%s);",
+                        "SELECT count(1) FROM authenticators \n" +
+                        " WHERE aaid=%s AND key_id=%s AND device_id=%s AND username=%s AND status=%s);",
                 ar.AAID, ar.KeyID, ar.deviceId, ar.username, ar.status);
     }
 
     private String prepareAuthenticatorRecord(AuthenticatorRecord ar) {
         return String.format(
-                    "INSERT INTO public.authenticator_records(aaid, key_id, device_id, username, status) " +
+                    "INSERT INTO public.authenticators(aaid, key_id, device_id, username, status) " +
                     "VALUES ('%s', '%s', '%s', '%s', '%s') " +
                     "RETURNING ID;",
                 ar.AAID, ar.KeyID, ar.deviceId, ar.username, ar.status);
@@ -162,7 +162,7 @@ public class DBConnection {
 
     private String prepareInsertRegistrationRecord(RegistrationRecord rr) {
         return String.format(
-                "INSERT INTO public.registration_records(\n" +
+                "INSERT INTO public.registrations(\n" +
                         "            authenticator_id, public_key, sign_counter, authenticator_version, \n" +
                         "            tc_display_png_characteristics, username, user_id, device_id, \n" +
                         "            time_stamp, status, attest_cert, attest_data_to_sign, attest_signature, \n" +
@@ -179,8 +179,8 @@ public class DBConnection {
     private String prepareGetRecordByKeyAndAAID(String key, String aaid) {
         return String.format(
                 "SELECT r.* " +
-                "FROM registration_records AS r " +
-                "JOIN authenticator_records AS a ON (r.authenticator_id = a.id) " +
+                "FROM registrations AS r " +
+                "JOIN authenticators AS a ON (r.authenticator_id = a.id) " +
                 "WHERE a.key_id = '%s' and a.aaid = '%s'" +
                 "LIMIT 1;",
                 key, aaid

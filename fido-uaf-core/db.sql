@@ -1,6 +1,6 @@
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
-CREATE TABLE authenticator_records (
+CREATE TABLE authenticators (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     aaid varchar(256),
     key_id varchar(256),
@@ -9,9 +9,9 @@ CREATE TABLE authenticator_records (
     status varchar(256)
 );
 
-CREATE TABLE registration_records (
+CREATE TABLE registrations (
      id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-     authenticator_id uuid references authenticator_records (id),
+     authenticator_id UUID references authenticators (id),
      public_key varchar(256),
      sign_counter varchar(256),
      authenticator_version varchar(256),
@@ -25,3 +25,4 @@ CREATE TABLE registration_records (
      attest_data_to_sign varchar(256),
      attest_signature varchar(256),
      attest_verified_status varchar(256))
+К
